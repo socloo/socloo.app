@@ -1,7 +1,11 @@
-﻿using System;
+﻿using RestSharp;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using SoclooAPI.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Web.Helpers;
 
 namespace Socloo.Mobile.Views
 {
@@ -13,6 +17,10 @@ namespace Socloo.Mobile.Views
         public AboutPage()
         {
             InitializeComponent();
+
+                Content = new Label {Text = "" };
+
         }
+
     }
 }
