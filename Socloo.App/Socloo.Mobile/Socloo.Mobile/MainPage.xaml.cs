@@ -1,26 +1,21 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using SoclooAPI.Models;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.Web.Helpers;
 
-namespace Socloo.Mobile.Views
+namespace Socloo.Mobile
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class AboutPage : ContentPage
+    public partial class MainPage : ContentPage
     {
-        public AboutPage()
+        public MainPage()
         {
             InitializeComponent();
-
-                Content = new Label {Text = "" };
-
         }
-
     }
 }
