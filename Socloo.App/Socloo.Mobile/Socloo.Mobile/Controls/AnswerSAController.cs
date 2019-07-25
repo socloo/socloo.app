@@ -7,15 +7,14 @@ using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class TeachersController
+    class AnswerSAController
     {
         public string url { get; set; }
-        public TeachersController()
+        public AnswerSAController()
         {
-            url = new Constants().WebApi+"Teachers/";
+            url = new Constants().WebApi + "AnswerSAs/";
         }
-
-        public bool Post(TeacherViewModel teacher)
+        public bool Post(AnswerSAViewModel answerSA)
         {
             try
             {
@@ -23,7 +22,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(teacher);
+                request.AddJsonBody(answerSA);
                 client.Execute(request);
                 return true;
             }
@@ -31,10 +30,9 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-           
-        }
 
-        public List<TeacherModel> GetAll()
+        }
+        public List<AnswerSAModel> GetAll()
         {
             try
             {
@@ -43,17 +41,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<TeacherModel>> response = client.Execute<List<TeacherModel>>(request);
-                List<TeacherModel> teachers= new List<TeacherModel>(response.Data);
-                return teachers;
+                IRestResponse<List<AnswerSAModel>> response = client.Execute<List<AnswerSAModel>>(request);
+                List<AnswerSAModel> answerSAs = new List<AnswerSAModel>(response.Data);
+                return answerSAs;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-
-        public TeacherModel GetById(string id)
+        public AnswerSAModel GetById(string id)
         {
             try
             {
@@ -61,17 +58,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<TeacherModel> response = client.Execute<TeacherModel>(request);
-                TeacherModel teacher = response.Data;
-                return teacher;
+                IRestResponse<AnswerSAModel> response = client.Execute<AnswerSAModel>(request);
+                AnswerSAModel answerSA = response.Data;
+                return answerSA;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-
-        public bool PutById(string id, TeacherModel teacher)
+        public bool Put(string id, AnswerSAModel answerSA)
         {
             try
             {
@@ -79,7 +75,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(teacher);
+                request.AddJsonBody(answerSA);
                 client.Execute(request);
                 return true;
             }
@@ -87,8 +83,9 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
+
         }
-        public bool DeleteById(string id)
+        public bool Delete(string id)
         {
             try
             {
@@ -103,7 +100,8 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-      
+
         }
     }
+
 }
