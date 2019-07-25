@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using RestSharp;
+using Socloo.Mobile.Utils;
+using Socloo.Mobile.ViewModels;
+
+namespace Socloo.Mobile.Controls
+{
+    class AnswerMCController
+    {
+        public string url { get; set; }
+        public AnswerMCController()
+        {
+            url = new Constants().WebApi + "AnswerMCs/";
+        }
+        public bool Post(AnswerMCViewModel answerMC)
+        {
+            try
+            {
+                var client = new RestClient();
+                var request = new RestRequest(url, Method.POST);
+                request.RequestFormat = DataFormat.Json;
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(answerMC);
+                client.Execute(request);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        public List<AnswerMCModel> GetAll()
+        {
+            try
+            {
+
+                var client = new RestClient();
+                var request = new RestRequest(url, Method.GET);
+                request.RequestFormat = DataFormat.Json;
+                request.AddHeader("Content-Type", "application/json");
+                IRestResponse<List<AnswerMCModel>> response = client.Execute<List<AnswerMCModel>>(request);
+                List<AnswerMCModel> answerMCs = new List<AnswerMCModel>(response.Data);
+                return answerMCs;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public AnswerMCModel GetById(string id)
+        {
+            try
+            {
+                var client = new RestClient();
+                var request = new RestRequest(url + id, Method.GET);
+                request.RequestFormat = DataFormat.Json;
+                request.AddHeader("Content-Type", "application/json");
+                IRestResponse<AnswerMCModel> response = client.Execute<AnswerMCModel>(request);
+                AnswerMCModel answerMC = response.Data;
+                return answerMC;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public bool Put(string id, AnswerMCModel answerMC)
+        {
+            try
+            {
+                var client = new RestClient();
+                var request = new RestRequest(url + id, Method.PUT);
+                request.RequestFormat = DataFormat.Json;
+                request.AddHeader("Content-Type", "application/json");
+                request.AddJsonBody(answerMC);
+                client.Execute(request);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        public bool Delete(string id)
+        {
+            try
+            {
+                var client = new RestClient();
+                var request = new RestRequest(url + id, Method.DELETE);
+                request.RequestFormat = DataFormat.Json;
+                request.AddHeader("Content-Type", "application/json");
+                client.Execute(request);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+    }
+}
