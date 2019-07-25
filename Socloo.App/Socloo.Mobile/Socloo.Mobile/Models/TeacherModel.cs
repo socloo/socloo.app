@@ -16,6 +16,7 @@ namespace Socloo.Mobile
         public List<string> GroupsId { get; set; }
 
         public List<string> Subject { get; set; }
+
         public bool Deleted { get; set; } = false;
     }
 }
