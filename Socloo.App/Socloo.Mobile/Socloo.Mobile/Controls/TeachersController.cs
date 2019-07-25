@@ -40,7 +40,7 @@ namespace Socloo.Mobile.Controls
             {
 
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "teachers/", Method.GET);
+                var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 IRestResponse<List<TeacherModel>> response = client.Execute<List<TeacherModel>>(request);
@@ -76,7 +76,7 @@ namespace Socloo.Mobile.Controls
             try
             {
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "teachers/" + id, Method.PUT);
+                var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 request.AddJsonBody(teacher);
