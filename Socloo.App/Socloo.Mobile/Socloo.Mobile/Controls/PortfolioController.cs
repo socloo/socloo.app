@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
+using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
-
 namespace Socloo.Mobile.Controls
 {
-    class TeachersController
+    class PortfolioController
     {
         public string url { get; set; }
-        public TeachersController()
+        public PortfolioController()
         {
-            url = new Constants().WebApi+"Teachers/";
+            url = new Constants().WebApi + "Portfolios/";
         }
 
-        public bool Post(TeacherViewModel teacher)
+        public bool Post(PortfolioViewModel portfolio)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(teacher);
+                request.AddJsonBody(portfolio);
                 client.Execute(request);
                 return true;
             }
@@ -31,10 +31,10 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-           
+
         }
 
-        public List<TeacherModel> GetAll()
+        public List<PortfolioModel> GetAll()
         {
             try
             {
@@ -43,9 +43,9 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<TeacherModel>> response = client.Execute<List<TeacherModel>>(request);
-                List<TeacherModel> teachers= new List<TeacherModel>(response.Data);
-                return teachers;
+                IRestResponse<List<PortfolioModel>> response = client.Execute<List<PortfolioModel>>(request);
+                List<PortfolioModel> portfolios = new List<PortfolioModel>(response.Data);
+                return portfolios;
             }
             catch (Exception e)
             {
@@ -53,7 +53,7 @@ namespace Socloo.Mobile.Controls
             }
         }
 
-        public TeacherModel GetById(string id)
+        public PortfolioModel GetById(string id)
         {
             try
             {
@@ -61,9 +61,9 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<TeacherModel> response = client.Execute<TeacherModel>(request);
-                TeacherModel teacher = response.Data;
-                return teacher;
+                IRestResponse<PortfolioModel> response = client.Execute<PortfolioModel>(request);
+                PortfolioModel portfolio = response.Data;
+                return portfolio;
             }
             catch (Exception e)
             {
@@ -71,7 +71,7 @@ namespace Socloo.Mobile.Controls
             }
         }
 
-        public bool PutById(string id, TeacherModel teacher)
+        public bool PutById(string id, PortfolioModel portfolio)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(teacher);
+                request.AddJsonBody(portfolio);
                 client.Execute(request);
                 return true;
             }
@@ -103,7 +103,7 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-      
+
         }
     }
 }
