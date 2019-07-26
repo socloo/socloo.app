@@ -68,6 +68,9 @@
                     </OnPlatform>
                 </controls:Calendar.LastSelectedBackgroundImage>
             </controls:Calendar>
+            <Label x:Name="date">
+                
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

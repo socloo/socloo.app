@@ -15,6 +15,19 @@ namespace Socloo.Mobile
         public CalendarPage()
         {
             InitializeComponent();
+
+
+        }
+        public void showEvent(DateTime dat)
+        {
+            try
+            {
+                date.Text = dat.ToString();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

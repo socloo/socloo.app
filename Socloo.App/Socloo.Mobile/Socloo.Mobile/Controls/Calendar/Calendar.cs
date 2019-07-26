@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-
+using Socloo.Mobile;
 namespace SmartHotel.Clients.Core.Controls
 {
     public partial class Calendar : ContentView
@@ -629,8 +629,10 @@ namespace SmartHotel.Clients.Core.Controls
             {
                 SelectedDate = selectedDate;
             }
+            new CalendarPage().showEvent(selectedDate.Value);
         }
-
+        
+       
         #endregion
 
         public event EventHandler<DateTimeEventArgs> DateClicked;
