@@ -10,7 +10,7 @@ namespace Socloo.Mobile
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new AddStudentPage();
         }
 
         protected override void OnStart()
