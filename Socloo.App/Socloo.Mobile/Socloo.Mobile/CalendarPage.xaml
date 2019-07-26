@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:SmartHotel.Clients.Core.Controls"
+             mc:Ignorable="d"
+             x:Class="Socloo.Mobile.CalendarPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <controls:Calendar x:Name="Calendar"
+                               TranslationY="10"
+                               SelectedDates="{Binding Dates, Mode=TwoWay}"
+                               StartDay="Sunday"
+                               DatesFontSize="12"
+                               SelectedFontSize="12"
+                               WeekdaysFontSize="12"
+                               TitleLabelFontSize="20"
+                               SelectedBorderWidth="0"
+                               BorderWidth="0"
+                               DisabledFontSize="12"
+                               DisabledBorderWidth="6"
+                               EnableTitleMonthYearView="True"
+                               WeekdaysShow="True"
+                               WeekdaysFontAttributes="Bold"
+                               DisabledBorderColor="{DynamicResource WhiteColor}"
+                               DisabledBackgroundColor="{DynamicResource WhiteColor}"
+                               BorderColor="{DynamicResource WhiteColor}"
+                               DatesBackgroundColor="{DynamicResource WhiteColor}"
+                               TitleLeftArrowTextColor="{DynamicResource DarkGrayColor}"
+                               TitleRightArrowTextColor="{DynamicResource DarkGrayColor}"
+                               SelectedTextColor="{DynamicResource SelectedDateColor}"
+                               SelectedBorderColor="{DynamicResource WhiteColor}"
+                               MultiSelectDates="True"
+                               SelectRange="True"
+                               DateCommand="{Binding SelectedDateCommand}"
+                               HorizontalOptions="Center">
+                <controls:Calendar.SelectedBackgroundImage>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android, iOS"
+                            Value="ball" />
+                        <On Platform="UWP"
+                            Value="Assets/ball.png" />
+                    </OnPlatform>
+                </controls:Calendar.SelectedBackgroundImage>
+                <controls:Calendar.SelectedRangeBackgroundImage>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android, iOS"
+                            Value="selected" />
+                        <On Platform="UWP"
+                            Value="Assets/selected.png" />
+                    </OnPlatform>
+                </controls:Calendar.SelectedRangeBackgroundImage>
+                <controls:Calendar.FirstSelectedBackgroundImage>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android, iOS"
+                            Value="ball_left" />
+                        <On Platform="UWP"
+                            Value="Assets/ball_left.png" />
+                    </OnPlatform>
+                </controls:Calendar.FirstSelectedBackgroundImage>
+                <controls:Calendar.LastSelectedBackgroundImage>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android, iOS"
+                            Value="ball_right" />
+                        <On Platform="UWP"
+                            Value="Assets/ball_right.png" />
+                    </OnPlatform>
+                </controls:Calendar.LastSelectedBackgroundImage>
+            </controls:Calendar>
+            <Label x:Name="date">
+                
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
