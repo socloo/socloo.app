@@ -15,8 +15,8 @@
     <local:ChatPage Icon="chaticon.png">
     </local:ChatPage>
     
-    <local:GroupPage Icon="groupicon.png">
-    </local:GroupPage>
+    <local:AddStudentPage Icon="groupicon.png">
+    </local:AddStudentPage>
     
     <local:TestPage Icon="testicon.png">
     </local:TestPage>

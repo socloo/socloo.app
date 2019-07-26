@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Socloo.Mobile.Controls;
 using Socloo.Mobile.ViewModels;
@@ -30,6 +31,7 @@ namespace Socloo.Mobile
                 Deleted = false,
                 GroupsId = new List<string>(),
             };
+            
             var resultPost = new StudentsController().Post(student);
             if (resultPost)
             {
@@ -43,6 +45,8 @@ namespace Socloo.Mobile
             {
                 result.Text = "Errore";
             }
+            
         }
+        
     }
 }

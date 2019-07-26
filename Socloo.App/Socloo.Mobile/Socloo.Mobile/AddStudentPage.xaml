@@ -33,20 +33,22 @@
 
 
 
-            <Entry x:Name="name" TextColor="CadetBlue"></Entry>
+            <Entry x:Name="name"></Entry>
             
 
 
 
 
             <Label Text="Numero di telefono" TextColor="CadetBlue" Margin="0,20,0,0"></Label>
-            <Entry x:Name="phone" TextColor="CadetBlue"></Entry>
+            <Entry x:Name="phone"  
+                   Keyboard="Numeric"></Entry>
             <Label Text="Email"
 
                    TextColor="CadetBlue"
                    Margin="0,20,0,0"></Label>
             <Entry x:Name="email"
-                   TextColor="CadetBlue"></Entry>
+                   
+                   Keyboard="Email"></Entry>
             <Button Clicked="Button_OnClicked" 
                     Text="ADD USER"
                     x:Name="button"
