@@ -1,4 +1,5 @@
 ﻿using System;
+using Socloo.Mobile.Pages.AdminPages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace Socloo.Mobile
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MainAdminPage();
         }
 
         protected override void OnStart()

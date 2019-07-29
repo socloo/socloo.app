@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
-            x:Class="Socloo.Mobile.MainPage"
+            x:Class="Socloo.Mobile.Pages.AdminPages.MainAdminPage"
             xmlns:local="clr-namespace:Socloo.Mobile"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.BarItemColor="#303030"
             android:TabbedPage.BarSelectedItemColor="#bd3343"
             android:TabbedPage.IsSmoothScrollEnabled="True">
-
-    <!--<local:ChatPage Icon="chaticon.png">
+    <local:ChatPage Icon="chaticon.png">
     </local:ChatPage>
-    
+
     <local:AddUserPage Icon="groupicon.png">
     </local:AddUserPage>
-    
-    <local:TestPage Icon="testicon.png">
-    </local:TestPage>
-    
+
+    <local:ChatPage Icon="testicon.png">
+    </local:ChatPage>
+
     <local:FilePage Icon="fileicon.png">
     </local:FilePage>
-    
+
     <local:CalendarPage Icon="calendaricon.png">
-    </local:CalendarPage>-->
-    
+    </local:CalendarPage>
+
 </TabbedPage>

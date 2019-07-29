@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Socloo.Mobile
+namespace Socloo.Mobile.Pages.AdminPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TestPage : ContentPage
+    public partial class MainAdminPage
     {
-        public TestPage()
+        public MainAdminPage()
         {
             InitializeComponent();
         }

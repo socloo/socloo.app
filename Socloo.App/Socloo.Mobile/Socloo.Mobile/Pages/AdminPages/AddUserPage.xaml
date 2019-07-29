@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Socloo.Mobile.AddStudentPage">
-
+             x:Class="Socloo.Mobile.AddUserPage">
 
     <ContentPage.Resources>
         <StyleSheet>
@@ -22,39 +22,32 @@
     <ContentPage.Content>
         <StackLayout x:Name="stack"
                      Padding="20,30,20,20"
-                     BackgroundColor="GhostWhite"
-                      >
+                     BackgroundColor="GhostWhite">
 
 
+            <Label Text="Nome Completo" TextColor="CadetBlue" />
 
 
-            <Label Text="Nome Completo" TextColor="CadetBlue"></Label>
+            <Entry x:Name="name" />
 
 
-
-
-            <Entry x:Name="name"></Entry>
-            
-
-
-
-
-            <Label Text="Numero di telefono" TextColor="CadetBlue" Margin="0,20,0,0"></Label>
-            <Entry x:Name="phone"  
-                   Keyboard="Numeric"></Entry>
+            <Label Text="Numero di telefono" TextColor="CadetBlue" Margin="0,20,0,0" />
+            <Entry x:Name="phone"
+                   Keyboard="Numeric" />
             <Label Text="Email"
 
                    TextColor="CadetBlue"
-                   Margin="0,20,0,0"></Label>
+                   Margin="0,20,0,0" />
             <Entry x:Name="email"
-                   
-                   Keyboard="Email"></Entry>
-            <Button Clicked="Button_OnClicked" 
-                    Text="ADD USER"
+
+                   Keyboard="Email" />
+
+            <Picker Title="Scegli il Ruolo" TitleColor="#5f9ea0" x:Name="PickerRole" Margin="0,20,0,0" />
+            <Button Clicked="Button_OnClicked"
+                    Text="Aggiungi Utente"
                     x:Name="button"
                     Margin="0,10,0,0"
-                    CornerRadius="20"></Button>
-            <Label x:Name="result"></Label>
+                    CornerRadius="20" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
