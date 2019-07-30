@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Socloo.Mobile.Pages.AdminPages.ProfileAdminPage">
+
+    <ContentPage.Resources>
+        <StyleSheet>
+            <![CDATA[
+                    ^button {
+	        background-color:#5f9ea0;
+            color:#f8f8ff;
+	       
+        }   
+            ]]>
+        </StyleSheet>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout x:Name="stack"
+                     Padding="20,30,20,20"
+                     BackgroundColor="GhostWhite">
+            <Image x:Name="ProfileImage" Margin="0,10,0,0" Source="Socloo.Mobile.Pages.AdminPages.defaultProfilePic.png" Aspect="AspectFill"></Image>
+            <Label Text="Profilo" TextColor="CadetBlue" Margin="0,10,0,0"></Label>
+            <Label x:Name="FullName" TextColor="CadetBlue" Margin="0,20,0,0"></Label>
+            <Label x:Name="Email"  TextColor="CadetBlue" Margin="0,10,0,0"></Label>
+            <Label x:Name="PhoneNumber"  TextColor="CadetBlue" Margin="0,10,0,0"></Label>
+            <Label x:Name="Bio"   TextColor="CadetBlue" Margin="0,10,0,0"></Label>
+        
+        </StackLayout>
+      
+    </ContentPage.Content>
+</ContentPage>

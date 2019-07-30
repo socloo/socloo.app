@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using Socloo.Mobile.Controls;
 using Socloo.Mobile.ViewModels;
 using Xamarin.Forms;
@@ -14,22 +15,31 @@ namespace Socloo.Mobile
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddUserPage : ContentPage
     {
+        
         public AddUserPage()
         {
             InitializeComponent();
             PickerRole.Items.Add("Studente");
             PickerRole.Items.Add("Docente");
 
+          
         }
-        private void Button_OnClicked(object sender, EventArgs e)
+        private async void Button_OnClicked(object sender, EventArgs e)
         {
             bool resultPost = false;
+            LoadingText.IsVisible = true;
+            activityIndicator.IsVisible = true;
+            activityIndicator.IsRunning = true;
+
+
             if (name.Text == null || email.Text == null || phone.Text == null)
             {
-                DisplayAlert("Errore", "Nessun campo può essere vuoto", "Ok");
+                await DisplayAlert("Errore", "Nessun campo può essere vuoto", "Ok");
             }
             else
             {
+                
+
                 if (PickerRole.SelectedIndex == 0)
                 {
                     StudentViewModel student = new StudentViewModel
@@ -41,7 +51,7 @@ namespace Socloo.Mobile
                         Deleted = false,
                         GroupsId = new List<string>(),
                     };
-                    resultPost = new StudentsController().Post(student);
+                    resultPost = await new StudentsService().Post(student);
                 }
                 else
                 {
@@ -57,25 +67,30 @@ namespace Socloo.Mobile
                             GroupsId = new List<string>(),
                             Subject = new List<string>(),
                         };
-                        resultPost = new TeachersController().Post(teacher);
+                        resultPost = new TeachersService().Post(teacher);
                     }
                 }
                
                 if (resultPost)
                 {
-                    DisplayAlert("Result", "Utente aggiunto", "Ok");
+                    await DisplayAlert("Result", "Utente aggiunto", "Ok");
                     email.Text = "";
                     name.Text = "";
                     phone.Text = "";
+                   
 
                 }
                 else
                 {
-                    DisplayAlert("Errore", "Errore Generico", "Ok");
+                    await DisplayAlert("Errore", "Errore Generico", "Ok");
                 }
-
+               
             }
-
+            activityIndicator.IsRunning = false;
+            activityIndicator.IsVisible = false;
+            LoadingText.IsVisible = false;
         }
+
+       
     }
 }

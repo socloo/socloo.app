@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Socloo.Mobile.Pages.AdminPages.ViewSchoolPage">
+    <ContentPage.Content>
+        <Grid x:Name="GridLayout" Margin="2,2,2,2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Text="Nome Completo " Grid.Row="0" Grid.Column="0" />
+            <Label Text="Email" Grid.Row="0" Grid.Column="1" />
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

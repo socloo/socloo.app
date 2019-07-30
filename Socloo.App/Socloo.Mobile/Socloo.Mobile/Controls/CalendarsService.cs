@@ -2,83 +2,102 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
-using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
-namespace Socloo.Mobile.Controls {
-    class TestsController {
+namespace Socloo.Mobile.Controls
+{
+    class CalendarsService
+    {
         public string url { get; set; }
-        public TestsController() {
-            url = new Constants().WebApi + "Tests/";
+        public CalendarsService()
+        {
+            url = new Constants().WebApi + "Calendars/";
         }
-
-        public bool Post(TestViewModel test) {
-            try {
+        public bool Post(CalendarViewModel calendar)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(test);
+                request.AddJsonBody(calendar);
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 
         }
-
-        public List<TestModel> GetAll() {
-            try {
+        public List<CalendarModel> GetAll()
+        {
+            try
+            {
 
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "tests/", Method.GET);
+                var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<TestModel>> response = client.Execute<List<TestModel>>(request);
-                List<TestModel> tests = new List<TestModel>(response.Data);
-                return tests;
-            } catch (Exception e) {
+                IRestResponse<List<CalendarModel>> response = client.Execute<List<CalendarModel>>(request);
+                List<CalendarModel> calendars = new List<CalendarModel>(response.Data);
+                return calendars;
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }
-
-        public TestModel GetById(string id) {
-            try {
+        public CalendarModel GetById(string id)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<TestModel> response = client.Execute<TestModel>(request);
-                TestModel test = response.Data;
-                return test;
-            } catch (Exception e) {
+                IRestResponse<CalendarModel> response = client.Execute<CalendarModel>(request);
+                CalendarModel calendar = response.Data;
+                return calendar;
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }
-
-        public bool Put(string id, TestModel test) {
-            try {
+        public bool Put(string id, CalendarModel calendar)
+        {
+            try
+            {
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "tests/" + id, Method.PUT);
+                var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(test);
+                request.AddJsonBody(calendar);
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
+
         }
-        public bool Delete(string id) {
-            try {
+        public bool Delete(string id)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.DELETE);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 

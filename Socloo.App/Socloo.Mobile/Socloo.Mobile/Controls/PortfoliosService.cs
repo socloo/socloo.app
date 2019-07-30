@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
+using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
-
 namespace Socloo.Mobile.Controls
 {
-    class CalendarController
+    class PortfoliosService
     {
         public string url { get; set; }
-        public CalendarController()
+        public PortfoliosService()
         {
-            url = new Constants().WebApi + "Calendars/";
+            url = new Constants().WebApi + "Portfolios/";
         }
-        public bool Post(CalendarViewModel calendar)
+
+        public bool Post(PortfolioViewModel portfolio)
         {
             try
             {
@@ -22,7 +23,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(calendar);
+                request.AddJsonBody(portfolio);
                 client.Execute(request);
                 return true;
             }
@@ -32,7 +33,8 @@ namespace Socloo.Mobile.Controls
             }
 
         }
-        public List<CalendarModel> GetAll()
+
+        public List<PortfolioModel> GetAll()
         {
             try
             {
@@ -41,16 +43,17 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<CalendarModel>> response = client.Execute<List<CalendarModel>>(request);
-                List<CalendarModel> calendars = new List<CalendarModel>(response.Data);
-                return calendars;
+                IRestResponse<List<PortfolioModel>> response = client.Execute<List<PortfolioModel>>(request);
+                List<PortfolioModel> portfolios = new List<PortfolioModel>(response.Data);
+                return portfolios;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public CalendarModel GetById(string id)
+
+        public PortfolioModel GetById(string id)
         {
             try
             {
@@ -58,16 +61,17 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<CalendarModel> response = client.Execute<CalendarModel>(request);
-                CalendarModel calendar = response.Data;
-                return calendar;
+                IRestResponse<PortfolioModel> response = client.Execute<PortfolioModel>(request);
+                PortfolioModel portfolio = response.Data;
+                return portfolio;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public bool Put(string id, CalendarModel calendar)
+
+        public bool PutById(string id, PortfolioModel portfolio)
         {
             try
             {
@@ -75,7 +79,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(calendar);
+                request.AddJsonBody(portfolio);
                 client.Execute(request);
                 return true;
             }
@@ -83,9 +87,8 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-
         }
-        public bool Delete(string id)
+        public bool DeleteById(string id)
         {
             try
             {

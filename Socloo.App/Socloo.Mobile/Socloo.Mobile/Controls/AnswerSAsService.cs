@@ -2,86 +2,106 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
-using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
-namespace Socloo.Mobile.Controls {
-    class SuperAdminsController {
+namespace Socloo.Mobile.Controls
+{
+    class AnswerSAsService
+    {
         public string url { get; set; }
-        public SuperAdminsController() {
-            url = new Constants().WebApi + "SuperAdmins/";
+        public AnswerSAsService()
+        {
+            url = new Constants().WebApi + "AnswerSAs/";
         }
-
-        public bool Post(SuperAdminViewModel superAdmin) {
-            try {
+        public bool Post(AnswerSAViewModel answerSA)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(superAdmin);
+                request.AddJsonBody(answerSA);
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 
         }
-
-        public List<SuperAdminModel> GetAll() {
-            try {
+        public List<AnswerSAModel> GetAll()
+        {
+            try
+            {
 
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "SuperAdmins/", Method.GET);
+                var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<SuperAdminModel>> response = client.Execute<List<SuperAdminModel>>(request);
-                List<SuperAdminModel> superAdmins = new List<SuperAdminModel>(response.Data);
-                return superAdmins;
-            } catch (Exception e) {
+                IRestResponse<List<AnswerSAModel>> response = client.Execute<List<AnswerSAModel>>(request);
+                List<AnswerSAModel> answerSAs = new List<AnswerSAModel>(response.Data);
+                return answerSAs;
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }
-
-        public SuperAdminModel GetById(string id) {
-            try {
+        public AnswerSAModel GetById(string id)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<SuperAdminModel> response = client.Execute<SuperAdminModel>(request);
-                SuperAdminModel superAdmin = response.Data;
-                return superAdmin;
-            } catch (Exception e) {
+                IRestResponse<AnswerSAModel> response = client.Execute<AnswerSAModel>(request);
+                AnswerSAModel answerSA = response.Data;
+                return answerSA;
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }
-
-        public bool Put(string id, SuperAdminModel superAdmin) {
-            try {
+        public bool Put(string id, AnswerSAModel answerSA)
+        {
+            try
+            {
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "superAdmins/" + id, Method.PUT);
+                var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(superAdmin);
+                request.AddJsonBody(answerSA);
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
+
         }
-        public bool Delete(string id) {
-            try {
+        public bool Delete(string id)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.DELETE);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 
         }
     }
+
 }

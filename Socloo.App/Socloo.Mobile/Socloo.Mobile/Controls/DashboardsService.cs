@@ -7,14 +7,14 @@ using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class AnswerMCController
+    class DashboardsService
     {
         public string url { get; set; }
-        public AnswerMCController()
+        public DashboardsService()
         {
-            url = new Constants().WebApi + "AnswerMCs/";
+            url = new Constants().WebApi + "Dashboards/";
         }
-        public bool Post(AnswerMCViewModel answerMC)
+        public bool Post(DashboardViewModel dashboard)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(answerMC);
+                request.AddJsonBody(dashboard);
                 client.Execute(request);
                 return true;
             }
@@ -32,7 +32,7 @@ namespace Socloo.Mobile.Controls
             }
 
         }
-        public List<AnswerMCModel> GetAll()
+        public List<DashboardModel> GetAll()
         {
             try
             {
@@ -41,16 +41,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<AnswerMCModel>> response = client.Execute<List<AnswerMCModel>>(request);
-                List<AnswerMCModel> answerMCs = new List<AnswerMCModel>(response.Data);
-                return answerMCs;
+                IRestResponse<List<DashboardModel>> response = client.Execute<List<DashboardModel>>(request);
+                List<DashboardModel> dashboards = new List<DashboardModel>(response.Data);
+                return dashboards;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public AnswerMCModel GetById(string id)
+        public DashboardModel GetById(string id)
         {
             try
             {
@@ -58,16 +58,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<AnswerMCModel> response = client.Execute<AnswerMCModel>(request);
-                AnswerMCModel answerMC = response.Data;
-                return answerMC;
+                IRestResponse<DashboardModel> response = client.Execute<DashboardModel>(request);
+                DashboardModel dashboard = response.Data;
+                return dashboard;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public bool Put(string id, AnswerMCModel answerMC)
+        public bool Put(string id, DashboardModel dashboard)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(answerMC);
+                request.AddJsonBody(dashboard);
                 client.Execute(request);
                 return true;
             }

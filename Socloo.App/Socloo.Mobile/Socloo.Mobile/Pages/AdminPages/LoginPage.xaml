@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Socloo.Mobile.AddUserPage">
+             x:Class="Socloo.Mobile.Pages.AdminPages.LoginPage">
 
     <ContentPage.Resources>
         <StyleSheet>
@@ -18,51 +17,20 @@
             ]]>
         </StyleSheet>
     </ContentPage.Resources>
-
     <ContentPage.Content>
-        <StackLayout x:Name="stack"
-                     Padding="20,30,20,20"
-                     BackgroundColor="GhostWhite">
+        <StackLayout Margin="10,10,10,10">
 
-
-            <Label Text="Nome Completo" TextColor="CadetBlue" />
-
-
-            <Entry x:Name="name" />
-
-
-            <Label Text="Numero di telefono" TextColor="CadetBlue" Margin="0,20,0,0" />
-            <Entry x:Name="phone"
-                   Keyboard="Numeric" />
-            <Label Text="Email"
-
-                   TextColor="CadetBlue"
-                   Margin="0,20,0,0" />
-            <Entry x:Name="email"
-
-                   Keyboard="Email" />
-
-            <Picker Title="Scegli il Ruolo" TitleColor="#5f9ea0" x:Name="PickerRole" Margin="0,20,0,0" />
+            <Label Text="Inserisci l'Email:" />
+            <Entry Placeholder="" x:Name="EntryEmail"/>
             <Button Clicked="Button_OnClicked"
-                    Text="Aggiungi Utente"
+                    Text="Login"
                     x:Name="button"
                     Margin="0,10,0,0"
                     CornerRadius="20" />
-
-
             <ActivityIndicator x:Name="activityIndicator" IsRunning="False" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Color="Black" WidthRequest="30" HeightRequest="30" IsVisible="true"></ActivityIndicator>
-
             <Label x:Name="LoadingText" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" Text="Loading..." IsVisible="False"></Label>
 
-
-
-
-</StackLayout>
-
-
-
-                  
+        </StackLayout>
     </ContentPage.Content>
 
 </ContentPage>
-    

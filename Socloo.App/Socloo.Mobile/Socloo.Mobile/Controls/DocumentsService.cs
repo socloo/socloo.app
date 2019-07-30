@@ -2,83 +2,102 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
-using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
-namespace Socloo.Mobile.Controls {
-    class QuestionsController {
+namespace Socloo.Mobile.Controls
+{
+    class DocumentsService
+    {
         public string url { get; set; }
-        public QuestionsController() {
-            url = new Constants().WebApi + "Questions/";
+        public DocumentsService()
+        {
+            url = new Constants().WebApi + "Documents/";
         }
-
-        public bool Post(QuestionViewModel question) {
-            try {
+        public bool Post(DocumentViewModel document)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(question);
+                request.AddJsonBody(document);
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 
         }
-
-        public List<QuestionModel> GetAll() {
-            try {
+        public List<DocumentModel> GetAll()
+        {
+            try
+            {
 
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "Questions/", Method.GET);
+                var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<QuestionModel>> response = client.Execute<List<QuestionModel>>(request);
-                List<QuestionModel> questions = new List<QuestionModel>(response.Data);
-                return questions;
-            } catch (Exception e) {
+                IRestResponse<List<DocumentModel>> response = client.Execute<List<DocumentModel>>(request);
+                List<DocumentModel> documents = new List<DocumentModel>(response.Data);
+                return documents;
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }
-
-        public QuestionModel GetById(string id) {
-            try {
+        public DocumentModel GetById(string id)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<QuestionModel> response = client.Execute<QuestionModel>(request);
-                QuestionModel question = response.Data;
-                return question;
-            } catch (Exception e) {
+                IRestResponse<DocumentModel> response = client.Execute<DocumentModel>(request);
+                DocumentModel document = response.Data;
+                return document;
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }
-
-        public bool Put(string id, QuestionModel question) {
-            try {
+        public bool Put(string id, DocumentModel document)
+        {
+            try
+            {
                 var client = new RestClient();
-                var request = new RestRequest("https://socloodev.azurewebsites.net/api/" + "Questions/" + id, Method.PUT);
+                var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(question);
+                request.AddJsonBody(document);
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
+
         }
-        public bool Delete(string id) {
-            try {
+        public bool Delete(string id)
+        {
+            try
+            {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.DELETE);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 client.Execute(request);
                 return true;
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 

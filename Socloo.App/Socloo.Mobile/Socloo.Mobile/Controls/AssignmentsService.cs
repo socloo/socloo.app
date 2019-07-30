@@ -7,10 +7,10 @@ using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class AssignmentController
+    class AssignmentsService
     {
         public string url { get; set; }
-        public AssignmentController()
+        public AssignmentsService()
         {
             url = new Constants().WebApi + "Assignments/";
         }

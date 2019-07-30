@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
-using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class PostController
+    class CoursesService
     {
         public string url { get; set; }
-        public PostController()
+        public CoursesService()
         {
-            url = new Constants().WebApi + "Posts/";
+            url = new Constants().WebApi + "Courses/";
         }
-
-        public bool Post(PostViewModel post)
+        public bool Post(CourseViewModel course)
         {
             try
             {
@@ -24,7 +22,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(post);
+                request.AddJsonBody(course);
                 client.Execute(request);
                 return true;
             }
@@ -34,8 +32,7 @@ namespace Socloo.Mobile.Controls
             }
 
         }
-
-        public List<PostModel> GetAll()
+        public List<CourseModel> GetAll()
         {
             try
             {
@@ -44,17 +41,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<PostModel>> response = client.Execute<List<PostModel>>(request);
-                List<PostModel> posts = new List<PostModel>(response.Data);
-                return posts;
+                IRestResponse<List<CourseModel>> response = client.Execute<List<CourseModel>>(request);
+                List<CourseModel> courses = new List<CourseModel>(response.Data);
+                return courses;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-
-        public PostModel GetById(string id)
+        public CourseModel GetById(string id)
         {
             try
             {
@@ -62,17 +58,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<PostModel> response = client.Execute<PostModel>(request);
-                PostModel post = response.Data;
-                return post;
+                IRestResponse<CourseModel> response = client.Execute<CourseModel>(request);
+                CourseModel course = response.Data;
+                return course;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-
-        public bool PutById(string id, PostModel post)
+        public bool Put(string id, CourseModel course)
         {
             try
             {
@@ -80,7 +75,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(post);
+                request.AddJsonBody(course);
                 client.Execute(request);
                 return true;
             }
@@ -88,8 +83,9 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
+
         }
-        public bool DeleteById(string id)
+        public bool Delete(string id)
         {
             try
             {

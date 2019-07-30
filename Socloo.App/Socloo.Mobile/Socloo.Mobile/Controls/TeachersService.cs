@@ -7,14 +7,15 @@ using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class ChatController
+    class TeachersService
     {
         public string url { get; set; }
-        public ChatController()
+        public TeachersService()
         {
-            url = new Constants().WebApi + "Chats/";
+            url = new Constants().WebApi+"Teachers/";
         }
-        public bool Post(ChatViewModel chat)
+
+        public bool Post(TeacherViewModel teacher)
         {
             try
             {
@@ -22,7 +23,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(chat);
+                request.AddJsonBody(teacher);
                 client.Execute(request);
                 return true;
             }
@@ -30,9 +31,10 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-
+           
         }
-        public List<ChatModel> GetAll()
+
+        public List<TeacherModel> GetAll()
         {
             try
             {
@@ -41,16 +43,17 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<ChatModel>> response = client.Execute<List<ChatModel>>(request);
-                List<ChatModel> chats = new List<ChatModel>(response.Data);
-                return chats;
+                IRestResponse<List<TeacherModel>> response = client.Execute<List<TeacherModel>>(request);
+                List<TeacherModel> teachers= new List<TeacherModel>(response.Data);
+                return teachers;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public ChatModel GetById(string id)
+
+        public TeacherModel GetById(string id)
         {
             try
             {
@@ -58,16 +61,17 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<ChatModel> response = client.Execute<ChatModel>(request);
-                ChatModel chat = response.Data;
-                return chat;
+                IRestResponse<TeacherModel> response = client.Execute<TeacherModel>(request);
+                TeacherModel teacher = response.Data;
+                return teacher;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public bool Put(string id, ChatModel chat)
+
+        public bool PutById(string id, TeacherModel teacher)
         {
             try
             {
@@ -75,7 +79,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(chat);
+                request.AddJsonBody(teacher);
                 client.Execute(request);
                 return true;
             }
@@ -83,9 +87,8 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-
         }
-        public bool Delete(string id)
+        public bool DeleteById(string id)
         {
             try
             {
@@ -100,7 +103,7 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-
+      
         }
     }
 }

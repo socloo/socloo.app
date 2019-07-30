@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
+using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class AnswerSAController
+    class OccurrencesService
     {
         public string url { get; set; }
-        public AnswerSAController()
+        public OccurrencesService()
         {
-            url = new Constants().WebApi + "AnswerSAs/";
+            url = new Constants().WebApi + "Occurrences/";
         }
-        public bool Post(AnswerSAViewModel answerSA)
+
+        public bool Post(OccurrenceViewModel occurrence)
         {
             try
             {
@@ -22,7 +24,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(answerSA);
+                request.AddJsonBody(occurrence);
                 client.Execute(request);
                 return true;
             }
@@ -32,7 +34,8 @@ namespace Socloo.Mobile.Controls
             }
 
         }
-        public List<AnswerSAModel> GetAll()
+
+        public List<OccurrenceModel> GetAll()
         {
             try
             {
@@ -41,16 +44,17 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<AnswerSAModel>> response = client.Execute<List<AnswerSAModel>>(request);
-                List<AnswerSAModel> answerSAs = new List<AnswerSAModel>(response.Data);
-                return answerSAs;
+                IRestResponse<List<OccurrenceModel>> response = client.Execute<List<OccurrenceModel>>(request);
+                List<OccurrenceModel> occurrences = new List<OccurrenceModel>(response.Data);
+                return occurrences;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public AnswerSAModel GetById(string id)
+
+        public OccurrenceModel GetById(string id)
         {
             try
             {
@@ -58,16 +62,17 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<AnswerSAModel> response = client.Execute<AnswerSAModel>(request);
-                AnswerSAModel answerSA = response.Data;
-                return answerSA;
+                IRestResponse<OccurrenceModel> response = client.Execute<OccurrenceModel>(request);
+                OccurrenceModel occurrence = response.Data;
+                return occurrence;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public bool Put(string id, AnswerSAModel answerSA)
+
+        public bool PutById(string id, OccurrenceModel occurrence)
         {
             try
             {
@@ -75,7 +80,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(answerSA);
+                request.AddJsonBody(occurrence);
                 client.Execute(request);
                 return true;
             }
@@ -83,9 +88,8 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-
         }
-        public bool Delete(string id)
+        public bool DeleteById(string id)
         {
             try
             {
@@ -103,5 +107,4 @@ namespace Socloo.Mobile.Controls
 
         }
     }
-
 }

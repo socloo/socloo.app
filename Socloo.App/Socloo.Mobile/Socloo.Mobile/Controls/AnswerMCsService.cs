@@ -7,14 +7,14 @@ using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class AnswerTFController
+    class AnswerMCsService
     {
         public string url { get; set; }
-        public AnswerTFController()
+        public AnswerMCsService()
         {
-            url = new Constants().WebApi + "AnswerTFs/";
+            url = new Constants().WebApi + "AnswerMCs/";
         }
-        public bool Post(AnswerTFViewModel answerTF)
+        public bool Post(AnswerMCViewModel answerMC)
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(answerTF);
+                request.AddJsonBody(answerMC);
                 client.Execute(request);
                 return true;
             }
@@ -32,7 +32,7 @@ namespace Socloo.Mobile.Controls
             }
 
         }
-        public List<AnswerTFModel> GetAll()
+        public List<AnswerMCModel> GetAll()
         {
             try
             {
@@ -41,16 +41,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<AnswerTFModel>> response = client.Execute<List<AnswerTFModel>>(request);
-                List<AnswerTFModel> answerTFs = new List<AnswerTFModel>(response.Data);
-                return answerTFs;
+                IRestResponse<List<AnswerMCModel>> response = client.Execute<List<AnswerMCModel>>(request);
+                List<AnswerMCModel> answerMCs = new List<AnswerMCModel>(response.Data);
+                return answerMCs;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public AnswerTFModel GetById(string id)
+        public AnswerMCModel GetById(string id)
         {
             try
             {
@@ -58,16 +58,16 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<AnswerTFModel> response = client.Execute<AnswerTFModel>(request);
-                AnswerTFModel answerTF = response.Data;
-                return answerTF;
+                IRestResponse<AnswerMCModel> response = client.Execute<AnswerMCModel>(request);
+                AnswerMCModel answerMC = response.Data;
+                return answerMC;
             }
             catch (Exception e)
             {
                 return null;
             }
         }
-        public bool Put(string id, AnswerTFModel answerTF)
+        public bool Put(string id, AnswerMCModel answerMC)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(answerTF);
+                request.AddJsonBody(answerMC);
                 client.Execute(request);
                 return true;
             }
@@ -103,5 +103,4 @@ namespace Socloo.Mobile.Controls
 
         }
     }
-
 }

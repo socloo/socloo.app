@@ -8,6 +8,7 @@
             x:Class="Socloo.Mobile.Pages.AdminPages.MainAdminPage"
             xmlns:local="clr-namespace:Socloo.Mobile"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:adminPages="clr-namespace:Socloo.Mobile.Pages.AdminPages;assembly=Socloo.Mobile"
             android:TabbedPage.ToolbarPlacement="Bottom"
             android:TabbedPage.BarItemColor="#303030"
             android:TabbedPage.BarSelectedItemColor="#bd3343"
@@ -18,13 +19,13 @@
     <local:AddUserPage Icon="groupicon.png">
     </local:AddUserPage>
 
-    <local:ChatPage Icon="testicon.png">
+    <adminPages:ViewSchoolPage Icon="testicon.png">
+    </adminPages:ViewSchoolPage>
+
+    <adminPages:ProfileAdminPage Icon="fileicon.png">
+    </adminPages:ProfileAdminPage>
+
+    <local:ChatPage Icon="calendaricon.png">
     </local:ChatPage>
-
-    <local:FilePage Icon="fileicon.png">
-    </local:FilePage>
-
-    <local:CalendarPage Icon="calendaricon.png">
-    </local:CalendarPage>
 
 </TabbedPage>

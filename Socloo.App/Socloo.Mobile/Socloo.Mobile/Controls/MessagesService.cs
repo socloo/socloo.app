@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using RestSharp;
+using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
 namespace Socloo.Mobile.Controls
 {
-    class TeachersController
+    class MessagesService
     {
-        public string url { get; set; }
-        public TeachersController()
+        public string url { get; set; } 
+        public MessagesService()
         {
-            url = new Constants().WebApi+"Teachers/";
+            url = new Constants().WebApi + "Messages/";
         }
 
-        public bool Post(TeacherViewModel teacher)
+        public bool Post(MessageViewModel message)
         {
             try
             {
@@ -23,7 +24,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(teacher);
+                request.AddJsonBody(message);
                 client.Execute(request);
                 return true;
             }
@@ -31,10 +32,10 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-           
+
         }
 
-        public List<TeacherModel> GetAll()
+        public List<MessageModel> GetAll()
         {
             try
             {
@@ -43,9 +44,9 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<TeacherModel>> response = client.Execute<List<TeacherModel>>(request);
-                List<TeacherModel> teachers= new List<TeacherModel>(response.Data);
-                return teachers;
+                IRestResponse<List<MessageModel>> response = client.Execute<List<MessageModel>>(request);
+                List<MessageModel> messages = new List<MessageModel>(response.Data);
+                return messages;
             }
             catch (Exception e)
             {
@@ -53,7 +54,7 @@ namespace Socloo.Mobile.Controls
             }
         }
 
-        public TeacherModel GetById(string id)
+        public MessageModel GetById(string id)
         {
             try
             {
@@ -61,9 +62,9 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<TeacherModel> response = client.Execute<TeacherModel>(request);
-                TeacherModel teacher = response.Data;
-                return teacher;
+                IRestResponse<MessageModel> response = client.Execute<MessageModel>(request);
+                MessageModel message = response.Data;
+                return message;
             }
             catch (Exception e)
             {
@@ -71,7 +72,7 @@ namespace Socloo.Mobile.Controls
             }
         }
 
-        public bool PutById(string id, TeacherModel teacher)
+        public bool Put(string id, MessageModel message)
         {
             try
             {
@@ -79,7 +80,7 @@ namespace Socloo.Mobile.Controls
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(teacher);
+                request.AddJsonBody(message);
                 client.Execute(request);
                 return true;
             }
@@ -88,7 +89,8 @@ namespace Socloo.Mobile.Controls
                 return false;
             }
         }
-        public bool DeleteById(string id)
+
+        public bool Delete(string id)
         {
             try
             {
@@ -103,7 +105,7 @@ namespace Socloo.Mobile.Controls
             {
                 return false;
             }
-      
+
         }
     }
 }

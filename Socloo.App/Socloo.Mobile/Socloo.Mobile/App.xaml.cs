@@ -11,7 +11,7 @@ namespace Socloo.Mobile
         {
             InitializeComponent();
 
-            MainPage = new MainAdminPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

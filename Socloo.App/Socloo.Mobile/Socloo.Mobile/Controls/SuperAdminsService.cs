@@ -6,102 +6,79 @@ using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
 using Socloo.Mobile.ViewModels;
 
-namespace Socloo.Mobile.Controls
-{
-    class GroupController
-    {
+namespace Socloo.Mobile.Controls {
+    class SuperAdminsService {
         public string url { get; set; }
-        public GroupController()
-        {
-            url = new Constants().WebApi + "Groups/";
+        public SuperAdminsService() {
+            url = new Constants().WebApi + "SuperAdmins/";
         }
 
-        public bool Post(GroupViewModel group)
-        {
-            try
-            {
+        public bool Post(SuperAdminViewModel superAdmin) {
+            try {
                 var client = new RestClient();
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(group);
+                request.AddJsonBody(superAdmin);
                 client.Execute(request);
                 return true;
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 return false;
             }
 
         }
 
-        public List<GroupModel> GetAll()
-        {
-            try
-            {
+        public List<SuperAdminModel> GetAll() {
+            try {
 
                 var client = new RestClient();
                 var request = new RestRequest(url, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<List<GroupModel>> response = client.Execute<List<GroupModel>>(request);
-                List<GroupModel> groups = new List<GroupModel>(response.Data);
-                return groups;
-            }
-            catch (Exception e)
-            {
+                IRestResponse<List<SuperAdminModel>> response = client.Execute<List<SuperAdminModel>>(request);
+                List<SuperAdminModel> superAdmins = new List<SuperAdminModel>(response.Data);
+                return superAdmins;
+            } catch (Exception e) {
                 return null;
             }
         }
 
-        public GroupModel GetById(string id)
-        {
-            try
-            {
+        public SuperAdminModel GetById(string id) {
+            try {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.GET);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                IRestResponse<GroupModel> response = client.Execute<GroupModel>(request);
-                GroupModel group = response.Data;
-                return group;
-            }
-            catch (Exception e)
-            {
+                IRestResponse<SuperAdminModel> response = client.Execute<SuperAdminModel>(request);
+                SuperAdminModel superAdmin = response.Data;
+                return superAdmin;
+            } catch (Exception e) {
                 return null;
             }
         }
 
-        public bool PutById(string id, GroupModel group)
-        {
-            try
-            {
+        public bool Put(string id, SuperAdminModel superAdmin) {
+            try {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.PUT);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
-                request.AddJsonBody(group);
+                request.AddJsonBody(superAdmin);
                 client.Execute(request);
                 return true;
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 return false;
             }
         }
-        public bool DeleteById(string id)
-        {
-            try
-            {
+        public bool Delete(string id) {
+            try {
                 var client = new RestClient();
                 var request = new RestRequest(url + id, Method.DELETE);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 client.Execute(request);
                 return true;
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 return false;
             }
 
