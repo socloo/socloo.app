@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using RestSharp;
 using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
@@ -15,7 +17,7 @@ namespace Socloo.Mobile.Controls
             url = new Constants().WebApi + "Portfolios/";
         }
 
-        public bool Post(PortfolioViewModel portfolio)
+        public async Task<bool> Post(PortfolioViewModel portfolio)
         {
             try
             {
@@ -24,8 +26,8 @@ namespace Socloo.Mobile.Controls
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 request.AddJsonBody(portfolio);
-                client.Execute(request);
-                return true;
+                var restResponse = await client.ExecuteTaskAsync(request, CancellationToken.None);
+                return restResponse.IsSuccessful;
             }
             catch (Exception e)
             {

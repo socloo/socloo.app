@@ -25,6 +25,7 @@ namespace Socloo.Mobile.Pages.AdminPages
             string email = "" + Application.Current.Properties["Email"];
             foreach (var admin in admins)
             {
+
                 UserModel user = new UsersService().GetById(admin.UserId);
                 if (user.Email.Equals(email))
                 {
@@ -32,12 +33,25 @@ namespace Socloo.Mobile.Pages.AdminPages
                     break;
                 }
             }
-
-            foreach (var teacher in schoolAdmin.TeachersId)
+            Parallel.ForEach(schoolAdmin.TeachersId, (teacher) =>
             {
                 teachers.Add(new TeachersService().GetById(teacher));
-               
-            }
+            });
+            Parallel.For(0, teachers.Count, (i) =>
+            {
+                UserModel user = new UsersService().GetById(teachers[i].UserId);
+                Label fullNameLabel = new Label { Text = user.FullName };
+                Label emaiLabel = new Label { Text = "" + user.Email };
+                //  GridLayout.RowDefinitions.Add(new RowDefinition{Height = new GridLength(1,GridUnitType.Auto)});
+                GridLayout.Children.Add(fullNameLabel, 0, i);
+                GridLayout.Children.Add(emaiLabel, 1, i);
+            });
+
+            /*  foreach (var teacher in schoolAdmin.TeachersId)
+              {
+                  teachers.Add(new TeachersService().GetById(teacher));
+
+              }
 
             for (int i = 0; i < teachers.Count; i++)
             {
@@ -48,7 +62,7 @@ namespace Socloo.Mobile.Pages.AdminPages
                 GridLayout.Children.Add(fullNameLabel,0,i);
                 GridLayout.Children.Add(emaiLabel,1,i);
             }
-          
+          */
             //Application.Current.Properties["Email"];
 
         }

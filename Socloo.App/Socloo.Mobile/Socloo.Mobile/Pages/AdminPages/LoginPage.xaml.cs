@@ -20,10 +20,9 @@ namespace Socloo.Mobile.Pages.AdminPages
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             LoadingText.IsVisible = true;
-            activityIndicator.IsVisible = true;
             activityIndicator.IsRunning = true;
-             Application.Current.Properties["Email"] = EntryEmail.Text;
             await Navigation.PushModalAsync(new MainAdminPage());
+            Application.Current.Properties["Email"] = EntryEmail.Text;
             await Application.Current.SavePropertiesAsync();
 
         }

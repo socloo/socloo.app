@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using FFImageLoading.Forms;
 using Socloo.Mobile.Controls;
 using Socloo.Mobile.Models;
 using Xamarin.Forms;
@@ -27,14 +29,19 @@ namespace Socloo.Mobile.Pages.AdminPages
                 }
             }
 
-            FullName.Text = "Nome Completo: " + user.FullName;
-            Email.Text = "Email: " + user.Email;
-            PhoneNumber.Text = "Numero di Telefono: " + user.PhoneNumber;
-            Bio.Text = "Bio: "+user.Bio;
-            if (user.ProfilePictureId.Equals("5d286be132b90e35642c96db"))
-            {
-                ProfileImage= new Image{Source = "defaultProfilePic.png" };
-            }
+            FullName.Text = "Nome Completo: \n" + user.FullName;
+            Email.Text = "Email: \n" + user.Email;
+            PhoneNumber.Text = "Numero di Telefono: \n" + user.PhoneNumber;
+            Bio.Text = "Bio: \n"+user.Bio;
+
+            FullName.HorizontalTextAlignment = TextAlignment.Center;
+            Email.HorizontalTextAlignment = TextAlignment.Center;
+            PhoneNumber.HorizontalTextAlignment = TextAlignment.Center;
+            Bio.HorizontalTextAlignment = TextAlignment.Center;
+            //if (user.ProfilePictureId.Equals("5d286be132b90e35642c96db"))
+            //{
+            //    ProfileImage= new Image{Source = "defaultProfilePic.png" };
+            //}
         }
 
     }

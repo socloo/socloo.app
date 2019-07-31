@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using RestSharp;
 using Socloo.Mobile.Models;
 using Socloo.Mobile.Utils;
@@ -13,15 +15,15 @@ namespace Socloo.Mobile.Controls {
             url = new Constants().WebApi + "Tests/";
         }
 
-        public bool Post(TestViewModel test) {
+        public async Task<bool> Post(TestViewModel test) {
             try {
                 var client = new RestClient();
                 var request = new RestRequest(url, Method.POST);
                 request.RequestFormat = DataFormat.Json;
                 request.AddHeader("Content-Type", "application/json");
                 request.AddJsonBody(test);
-                client.Execute(request);
-                return true;
+                var restResponse = await client.ExecuteTaskAsync(request, CancellationToken.None);
+                return restResponse.IsSuccessful;
             } catch (Exception e) {
                 return false;
             }

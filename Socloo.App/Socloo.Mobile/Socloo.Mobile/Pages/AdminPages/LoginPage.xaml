@@ -27,7 +27,7 @@
                     x:Name="button"
                     Margin="0,10,0,0"
                     CornerRadius="20" />
-            <ActivityIndicator x:Name="activityIndicator" IsRunning="False" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Color="Black" WidthRequest="30" HeightRequest="30" IsVisible="true"></ActivityIndicator>
+            <ActivityIndicator x:Name="activityIndicator" Margin="0,50,0,0" VerticalOptions="Center" HorizontalOptions="Center" Color="Black" WidthRequest="30" HeightRequest="30" IsVisible="true"></ActivityIndicator>
             <Label x:Name="LoadingText" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" Text="Loading..." IsVisible="False"></Label>
 
         </StackLayout>

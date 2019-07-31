@@ -8,5 +8,6 @@ namespace Socloo.Mobile.Utils
     {
         //Url Web Api
         public string WebApi = "https://socloodev.azurewebsites.net/api/";
+        public string StorageUrl = "https://socloo.blob.core.windows.net";
     }
 }

@@ -67,7 +67,7 @@ namespace Socloo.Mobile
                             GroupsId = new List<string>(),
                             Subject = new List<string>(),
                         };
-                        resultPost = new TeachersService().Post(teacher);
+                        resultPost = new TeachersService().Post(teacher).Result;
                     }
                 }
                

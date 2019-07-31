@@ -11,6 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="defaultProfilePic.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="defaultProfilePic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="RestSharp" Version="106.6.10" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
